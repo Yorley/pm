@@ -1,0 +1,29 @@
+.product{
+    background-color: beige;
+    width: 99.5%;
+    margin: 6px 0px 6px 0px;
+    padding-bottom: 10px
+}
+
+.search{
+        
+        padding: 80px;
+        background: url(http://www.userslife.com/wp-content/uploads/2016/08/Jardineria-cultivoorganico2.jpg);
+        background-repeat: no-repeat;
+        background-size: 99.5%;
+        justify-content: center;
+        align-items: center;
+        color:#F8ECE0;
+        font-weight: bold;
+}
+.tabs{
+    padding: 3px;
+
+}
+
+.card{
+    background-color: beige;
+    width: 99.5%;
+    margin: 6px 0px 6px 0px;
+    padding-bottom: 10px
+}

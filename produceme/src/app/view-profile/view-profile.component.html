@@ -1,0 +1,151 @@
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/wow.min.js"></script>
+<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />-->
+<div class="container">
+	<div class="row">
+		<div class=" bg-transparent">
+    <div class="col-md-12 d-flex justify-content-around">
+        <!--=========================input type file change on button ends here====================-->
+        <div class="">
+             <!--<h2 class="text-center color">Bienvenido(a): {{currentUser.firstName}}</h2>-->
+            <div class="col-lg-12" style="margin-top:30px;padding-bottom: 20px;">
+                <div class="custom-form">
+                <div class="text-center bg-form">
+                    <div class="img-section">
+                        <img src="http://lorempixel.com/200/200/nature/" class="imgCircle" alt="Profile picture">
+                        <span class="fake-icon-edit" id="PicUpload" style="color: #ffffff;"><span class="fas fa-camera"></span></span>
+                    <div class="col-lg-12">
+                        <h4 class="text-right col-sm-12"><span class="fa fa-edit"></span> Editar perfil</h4>
+                        <input type="checkbox" class="form-control" id="checker">
+                    </div>
+                    </div>
+                    <input type="file" id="image-input" onchange="readURL(this);" accept="image/*" disabled class="form-control form-input Profile-input-file" >
+                </div>
+                
+            <div class="col-md-12 d-flex justify-content-center" style="padding-top: 20px">
+                    <h3 >Puntaje recibido: </h3>
+                    <fieldset class="rating" >
+                        <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                        <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                        <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                        <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                        <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                        <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                    </fieldset>
+            </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="row d-flex ">
+                        <div class="col-sm-12">
+                            <div class="col-sm-1">
+                                <span class="fa fa-user input-place" style="padding: 0; margin-right: 0px;"></span>
+                            </div> 
+                            <input type="text" class="form-control form-input " value={{currentUser.firstName}} placeholder="Nombre" disabled id="name">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                        <div class="row d-flex ">
+                            <div class="col-sm-12">
+                                <div class="col-sm-1">
+                                    <span class="fa fa-envelope input-place" style="padding: 0; margin-right: 0px;"></span>
+                                </div> 
+                                    <input type="text" class="form-control form-input" value="{{currentUser.email}}" placeholder="Correo" disabled id="email">
+                            </div>
+                        </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                        <div class="row d-flex ">
+                            <div class="col-sm-12">
+                                <div class="col-sm-1">
+                                    <span class="fa fa-phone input-place" style="padding: 0; margin-right: 0px;"></span>
+                                </div>
+                                <input type="text" class="form-control form-input" value="{{currentUser.phone}}" placeholder="Telefono" disabled id="phone">
+                            </div>
+                        </div>
+                </div>    
+                <div class="col-lg-12 col-md-12">
+                        <div class="row d-flex ">
+                            <div class="col-sm-12">
+                                <div class="col-sm-1">
+                                    <span class="fa fa-map-marker input-place" style="padding: 0; margin-right: 0px;"></span>
+                                </div>
+                                <input type="text" class="form-control form-input" value="Residencia" placeholder="Dirección" disabled id="place">
+                            </div>
+                        </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 text-center"style="padding-top: 10px">
+                 <!-- <p><a [routerLink]="['chat']">Salir</a></p> -->
+                  <p><a href="/chat">Salir</a></p>
+                  
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+	</div>
+</div>
+<!--===================================Script==================================================-->
+<script>
+ $('input[id=base-input]').change(function() {
+        $('#fake-input').val($(this).val().replace("C:\\fakepath\\", ""));
+    });
+    //==================Javascript code for custom input type file on button ================-->
+
+    $('input[id=main-input]').change(function() {
+        console.log($(this).val());
+        var mainValue = $(this).val();
+        if(mainValue == ""){
+            document.getElementById("fake-btn").innerHTML = "Choose File";
+        }else{
+            document.getElementById("fake-btn").innerHTML = mainValue.replace("C:\\fakepath\\", "");
+        }
+    });
+
+//=========================input type file change on button ends here====================-->
+
+//    ===================== snippet for profile picture change ============================ //
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.imgCircle')
+                        .attr('src', e.target.result)
+                        .width(200)
+                        .height(200);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+//    =================================== ends here ============================================ //
+
+    var checkme = document.getElementById('checker');
+    var userImage = document.getElementById('image-input');
+    var userName = document.getElementById('name');
+    var userPhone = document.getElementById('phone');
+    var userEmail = document.getElementById('email');
+    var userPlace = document.getElementById('place');
+    var UserSend = document.getElementById('submit');
+    var editPic = document.getElementById('PicUpload');
+    checkme.onchange = function() {
+        UserSend.disabled = !this.checked;
+        userImage.disabled = !this.checked;
+        userName.disabled = !this.checked;
+        userPhone.disabled = !this.checked;
+        userEmail.disabled = !this.checked;
+        userPlace.disabled = !this.checked;
+        editPic.style.display = this.checked ? 'block' : 'none';
+    };
+
+</script>

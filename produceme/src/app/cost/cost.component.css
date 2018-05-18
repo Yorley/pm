@@ -1,0 +1,19 @@
+.product{
+    background-color: beige;
+    width: 99.5%;
+    margin: 6px 0px 6px 0px;
+    padding-bottom: 10px
+}
+.search{
+        
+        padding: 80px;
+        background: url(../../assets/verduras_Compras.jpg);
+        background-repeat: no-repeat;
+        background-size: 99.5%;
+        justify-content: center;
+        align-items: center;
+}
+.tabs{
+    padding: 3px;
+
+}

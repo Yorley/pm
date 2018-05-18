@@ -1,0 +1,37 @@
+.search{
+        
+    padding: 80px;
+    background: url(../../assets/verduras_Compras.jpg);
+    background-repeat: no-repeat;
+    background-size:100%;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+.searchbar{
+    opacity: 1;
+}
+.opacity{
+    background: rgba(247, 235, 235, 0.562);  
+    padding-bottom: 5%;
+    margin-bottom: 9%;
+}
+
+#adam{
+    
+    background:url("../../assets/1.jpg");
+    /*width: 200px; 
+    height: 291px;*/
+    width: 245px;
+    height: 306px;
+    animation: walk-east 3.0s ;
+    background-repeat: no-repeat;  
+  }
+  @keyframes walk-east {
+    20% {background:url("../../assets/1.jpg")} to  {background:url("../../assets/2.jpg")}
+    46%  {background:url("../../assets/2.jpg")} to  {background:url("../../assets/3.jpg")}
+    86% {background:url("../../assets/3.jpg")} 
+    
+   /* from { background-position: 0px; } to { background-position: -960px; }*/
+  }

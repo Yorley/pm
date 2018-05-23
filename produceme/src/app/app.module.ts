@@ -32,6 +32,15 @@ import { JwtInterceptor } from './_helpers/index';
 import { AlertService, AuthenticationService, UserService, DssService } from './_services/index';
 import { UchatComponent } from './uchat/uchat.component';
 
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth'; 
+import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+
+import { AgmCoreModule } from '@agm/core';
+import { MapsService } from './service_map/maps.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,9 +67,16 @@ import { UchatComponent } from './uchat/uchat.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase, 'produceMe'),
+    AngularFireDatabaseModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyARl6VyKE8_p5e1pmToZLR_xw3CLRvvBOI'
+    })
   ],
   providers: [
+    
     AuthGuard,
     AlertService,
     AuthenticationService,
@@ -71,6 +87,7 @@ import { UchatComponent } from './uchat/uchat.component';
       useClass: JwtInterceptor,
       multi: true
     },
+    MapsService,
 // provider used to create fake backend
     fakeBackendProvider
 

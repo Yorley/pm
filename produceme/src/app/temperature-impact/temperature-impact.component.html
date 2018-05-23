@@ -54,3 +54,114 @@
     </div>
     <div ng-if="Consultar">
     </div>
+
+
+       
+    <div class="container main-container">
+
+        <div class="row">
+      
+          <div class="col-md-4">
+      
+            <div *ngIf="!selectedMarker"
+                 class="animated fadeIn fast">
+      
+              <div class="alert alert-info" role="alert">
+                <strong>Click</strong>
+                on the map to create a marker or select one.
+              </div>
+      
+            </div>
+      
+      
+            <div *ngIf="selectedMarker"
+                 class="animated fadeIn fast">
+      
+              <h5>Marker</h5>
+              <hr>
+      
+              <div class="form-group">
+      
+                <label>Title</label>
+                <input  [(ngModel)]="selectedMarker.title"
+                        name="title"
+                        type="text"
+                        class="form-control">
+              </div>
+      
+      
+              <div class="form-group">
+      
+                <label>Description</label>
+                <textarea [(ngModel)]="selectedMarker.description"
+                          name="description"
+                          type="text"
+                          class="form-control"
+                          rows="5">
+                </textarea>
+              </div>
+      
+      
+              <div class="form-group">
+      
+                <label>Draggable</label>
+                <select [(ngModel)]="selectedMarker.draggable"
+                          name="draggable"
+                          class="form-control">
+                    <option [ngValue]="true">Yes</option>
+                    <option [ngValue]="false">No</option>
+                </select>
+              </div>
+      
+      
+              <button (click)="_ms.saveMarker()"
+                      type="button"
+                      class="btn btn-outline-primary btn-block">
+                  Save Changes
+              </button>
+      
+            </div>
+      
+          </div>
+      
+      
+          <div class="col-md-8 animated fadeIn fast">
+      
+            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"
+                     (mapClick)="clickMap($event)">
+      
+              <agm-marker *ngFor="let marker of _ms.markers; let i = index"
+                          [latitude]="marker.lat"
+                          [longitude]="marker.lng"
+                          [title]="marker.title"
+                          [markerDraggable]="marker.draggable"
+                          (markerClick)="clickMarker(marker, i)"
+                          (dragEnd)="dragEndMarker(marker, $event)">
+      
+                <agm-info-window>
+      
+                  <strong>{{ marker.title }}</strong>
+                  <p *ngIf="marker.description">
+                    {{ marker.description }}
+                  </p>
+      
+                  <p>
+                    <a  (click)="_ms.deleteMarker(i); selectedMarker=null"
+                        class="text-danger pointer">
+                      Delete marker
+                    </a>
+                  </p>
+      
+                </agm-info-window>
+      
+              </agm-marker>
+      
+            </agm-map>
+      
+          </div>
+      
+        </div>
+      
+      </div>
+  
+    

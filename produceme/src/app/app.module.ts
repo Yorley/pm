@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule,HTTP_INTERCEPTORS}    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS}    from '@angular/common/http';
 import { AppRoutingModule }     from './app-routing.module';
 import { FormsModule }    from '@angular/forms';
 
@@ -40,7 +40,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 
 import { AgmCoreModule } from '@agm/core';
-import { MapsService } from './service_map/maps.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,13 +80,12 @@ import { MapsService } from './service_map/maps.service';
     AlertService,
     AuthenticationService,
     DssService,
-    UserService,        
+    UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
     },
-    MapsService,
 // provider used to create fake backend
     fakeBackendProvider
 

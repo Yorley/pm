@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MapsService } from '../service_map/maps.service';
 import { Marker } from '../classes/marker';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Fruit } from '../classes/fruit';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-temperature-impact',
@@ -9,55 +12,24 @@ import { Marker } from '../classes/marker';
   styleUrls: ['./temperature-impact.component.css']
 })
 export class TemperatureImpactComponent implements OnInit {
-  lat: number = 41.403514;
-  lng: number = 2.174310;
-  zoom: number = 16;
+  lat = 9.5649173;
+  lng = -84.0078721;
+  zoom = 11;
 
-  selectedMarker: any = null;
+  visibleMarkers = {};
 
+  fruits: Observable<any[]>;
 
-  constructor( public _ms: MapsService ) {
-
-    this._ms.loadMarkers();
-
-  }
-
-
-  clickMap( event ) {
-
-     console.log(event);
-    let markerToInsert: Marker = {
-      lat: event.coords.lat,
-      lng: event.coords.lng,
-      title: "No title",
-      description: ""
-    }
-
-    this._ms.insertMarker(markerToInsert);
-
-  }
-
-
-  clickMarker( marker: Marker, i: number ) {
-    console.log(marker, i);
-    this.selectedMarker = marker;
-  }
-
-
-  dragEndMarker( marker: Marker, event ) {
-    console.log(marker, event);
-
-    let lat = event.coords.lat;
-    let lng = event.coords.lng;
-
-    marker.lat = lat;
-    marker.lng = lng;
-
-    this._ms.saveMarker();
-
-  }
+  constructor(public db: AngularFireDatabase ) {}
 
   ngOnInit() {
-  }
+    const fruitsRef = this.db.list<any>('product');
 
+    // Esto permite agregar el id de la fruta al objeto
+    this.fruits = fruitsRef.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+      )
+    );
+  }
 }

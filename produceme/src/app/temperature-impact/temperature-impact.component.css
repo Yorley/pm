@@ -21,7 +21,8 @@ h1 {
     border-width: 2px;  
     padding: 10px;
     margin-bottom: 0px;
-    
-    
+}
 
+agm-map {
+    height: calc(100vh - 150px);
 }

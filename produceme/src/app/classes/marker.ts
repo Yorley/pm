@@ -1,15 +1,17 @@
-export class Marker {
+interface MarkerIcon {
+    url: string;
+    scaledSize: {
+        height: number;
+        width: number;
+    };
+}
+export interface Marker {
 
-    public lat: number;
-    public lng: number;
+    lat: number;
+    lng: number;
 
-    public title = 'Sin Título';
-    public description = 'Sin Descripción';
-
-
-    constructor( lat: number,  lng: number ) {
-        this.lat = lat;
-        this.lng = lng;
-    }
-
+    title: string;
+    description: string;
+    icon: MarkerIcon | string;
+    id: string;
 }

@@ -1,167 +1,26 @@
-<div class="container bgCont">
-        <div class="row">
-                <div class="col-sm-12">
-                    <h1> Seleccione el producto</h1>
-                </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="container products">
-                    <div class="row d-flex justify-content-around">
-                        <div class="col-md-2">
-                                <p> Aguacate: </p>
-                        </div>
-                        <div class="col-md-2">
-                                <input type="checkbox" id="myCheck" onclick="myFunction()">
-                            </div>
-                    </div>
-                    <div class="row d-flex justify-content-around">
-                            <div class="col-md-2">
-                                    <p> Café: </p>
-                            </div>
-                            <div class="col-md-2">
-                                    <input type="checkbox" id="myCheck" onclick="myFunction()">
-                                </div>
-                        </div>
-                        <div class="row d-flex justify-content-around">
-                                <div class="col-md-2">
-                                        <p> Anona: </p>
-                                </div>
-                                <div class="col-md-2">
-                                        <input type="checkbox" id="myCheck" onclick="myFunction()">
-                                    </div>
-                            </div>   
-                            <div class="row d-flex justify-content-around">
-                                    <div class="col-md-2">
-                                            <p> Mora: </p>
-                                    </div>
-                                    <div class="col-md-2">
-                                            <input type="checkbox" id="myCheck" onclick="myFunction()">
-                                        </div>
-                            </div>
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary btn-xs">Consultar</button>
-                                </div>
-                            </div>
-                </div>                          
-            </div>
-            <div class=" col-sm-8">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d251798.26005928064!2d-84.00787275308207!3d9.565255869982586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa13d422cfbf035%3A0xb3e2bcba409d85c!2sSan+Jos%C3%A9%2C+Copey%2C+Costa+Rica!5e0!3m2!1ses!2sus!4v1525824982007" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
-                </iframe>        
-            </div>
-        </div>
+<nav class="navbar navbar-dark bg-dark sticky-top">
+    <div class="form-check form-check-inline">
+        <label *ngFor="let fruit of fruits | async" class="mr-3">
+          <input type="checkbox" [(ngModel)]="visibleMarkers[fruit.key]" 
+           name="{{fruit.key}}" class="mr-1"><span class="text-light text-capitalize">{{fruit.name}}</span>
+        </label>
     </div>
-    <div ng-if="Consultar">
-    </div>
-
-
-       
-    <div class="container main-container">
-
-        <div class="row">
-      
-          <div class="col-md-4">
-      
-            <div *ngIf="!selectedMarker"
-                 class="animated fadeIn fast">
-      
-              <div class="alert alert-info" role="alert">
-                <strong>Click</strong>
-                on the map to create a marker or select one.
-              </div>
-      
-            </div>
-      
-      
-            <div *ngIf="selectedMarker"
-                 class="animated fadeIn fast">
-      
-              <h5>Marker</h5>
-              <hr>
-      
-              <div class="form-group">
-      
-                <label>Title</label>
-                <input  [(ngModel)]="selectedMarker.title"
-                        name="title"
-                        type="text"
-                        class="form-control">
-              </div>
-      
-      
-              <div class="form-group">
-      
-                <label>Description</label>
-                <textarea [(ngModel)]="selectedMarker.description"
-                          name="description"
-                          type="text"
-                          class="form-control"
-                          rows="5">
-                </textarea>
-              </div>
-      
-      
-              <div class="form-group">
-      
-                <label>Draggable</label>
-                <select [(ngModel)]="selectedMarker.draggable"
-                          name="draggable"
-                          class="form-control">
-                    <option [ngValue]="true">Yes</option>
-                    <option [ngValue]="false">No</option>
-                </select>
-              </div>
-      
-      
-              <button (click)="_ms.saveMarker()"
-                      type="button"
-                      class="btn btn-outline-primary btn-block">
-                  Save Changes
-              </button>
-      
-            </div>
-      
-          </div>
-      
-      
-          <div class="col-md-8 animated fadeIn fast">
-      
-            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"
-                     (mapClick)="clickMap($event)">
-      
-              <agm-marker *ngFor="let marker of _ms.markers; let i = index"
-                          [latitude]="marker.lat"
-                          [longitude]="marker.lng"
-                          [title]="marker.title"
-                          [markerDraggable]="marker.draggable"
-                          (markerClick)="clickMarker(marker, i)"
-                          (dragEnd)="dragEndMarker(marker, $event)">
-      
-                <agm-info-window>
-      
-                  <strong>{{ marker.title }}</strong>
-                  <p *ngIf="marker.description">
-                    {{ marker.description }}
-                  </p>
-      
-                  <p>
-                    <a  (click)="_ms.deleteMarker(i); selectedMarker=null"
-                        class="text-danger pointer">
-                      Delete marker
-                    </a>
-                  </p>
-      
-                </agm-info-window>
-      
-              </agm-marker>
-      
-            </agm-map>
-      
-          </div>
-      
-        </div>
-      
-      </div>
+  </nav>
   
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+    <ng-container  *ngFor="let marker of fruits | async">
+      <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [iconUrl]="marker.icon" *ngIf="visibleMarkers[marker.key]">
+        <agm-info-window>
+          <h5>{{marker.title}}</h5>
+          <p class="text-muted">Recomendaciones de temperatura para su cultivo.</p>
+          <div class="d-flex justify-content-between">
+              <span class="mr-1"><i class="fa fa-thermometer-full text-muted"></i> <strong>Máx.</strong> 30º</span>
+              <span class="mr-1"><i class="fa fa-thermometer-half text-muted"></i> <strong>Prom.</strong> 25º</span>
+              <span class="mr-1"><i class="fa fa-thermometer-empty text-muted"></i> <strong>Min.</strong> 10º</span>
+          </div>
+          
+        </agm-info-window>
+      </agm-marker>
+    </ng-container>
     
+  </agm-map>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Marker } from '../classes/marker';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Fruit } from '../classes/fruit';
@@ -17,13 +16,13 @@ export class TemperatureImpactComponent implements OnInit {
   zoom = 11;
 
   visibleMarkers = {};
-
-  fruits: Observable<any[]>;
+ 
+  fruits: Observable<Fruit[]>;
 
   constructor(public db: AngularFireDatabase ) {}
 
   ngOnInit() {
-    const fruitsRef = this.db.list<any>('product');
+    const fruitsRef = this.db.list<Fruit>('product');
 
     // Esto permite agregar el id de la fruta al objeto
     this.fruits = fruitsRef.snapshotChanges().pipe(

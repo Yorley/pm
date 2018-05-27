@@ -6,21 +6,21 @@
         </label>
     </div>
   </nav>
-  
+  <label *ngFor="let fruit of fruits | async" class="mr-3">
+    {{fruit.name}}{{visibleMarkers[fruit.key]}}
+  </label>
   <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-    <ng-container  *ngFor="let marker of fruits | async">
-      <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [iconUrl]="marker.icon" *ngIf="visibleMarkers[marker.key]">
+    <ng-container  *ngFor="let fruit of fruits | async">
+      <agm-marker [latitude]=fruit.latitude [longitude]=fruit.longitude [iconUrl]=fruit.iconUrl *ngIf="visibleMarkers[fruit.key]">
         <agm-info-window>
-          <h5>{{marker.title}}</h5>
+          <h5>{{fruit.key}}</h5>
           <p class="text-muted">Recomendaciones de temperatura para su cultivo.</p>
           <div class="d-flex justify-content-between">
-              <span class="mr-1"><i class="fa fa-thermometer-full text-muted"></i> <strong>Máx.</strong> 30º</span>
-              <span class="mr-1"><i class="fa fa-thermometer-half text-muted"></i> <strong>Prom.</strong> 25º</span>
-              <span class="mr-1"><i class="fa fa-thermometer-empty text-muted"></i> <strong>Min.</strong> 10º</span>
+              <span class="mr-1"><i class="fa fa-thermometer-full text-muted"></i> <strong>Máx.</strong>{{fruit.max_temperature}}</span>
+              <span class="mr-1"><i class="fa fa-thermometer-half text-muted"></i> <strong>Prom.</strong>{{fruit.mean_temperature}}</span>
+              <span class="mr-1"><i class="fa fa-thermometer-empty text-muted"></i> <strong>Min.</strong> {{fruit.min_temperature}}</span>
           </div>
-          
         </agm-info-window>
       </agm-marker>
     </ng-container>
-    
   </agm-map>

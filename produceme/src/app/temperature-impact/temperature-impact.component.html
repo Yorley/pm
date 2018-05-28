@@ -10,10 +10,24 @@
     {{fruit.name}}{{visibleMarkers[fruit.key]}}
   </label>
   <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+      <ng-container>
+          <agm-marker [latitude]="9.4585" [longitude]="-83.56985" >
+            <agm-info-window>
+              <h5>Hola</h5>
+              <p class="text-muted">Recomendaciones de temperatura para su cultivo.</p>
+              <div class="d-flex justify-content-between">
+                  <span class="mr-1"><i class="fa fa-thermometer-full text-muted"></i> <strong>Máx.</strong>hola</span>
+                  <span class="mr-1"><i class="fa fa-thermometer-half text-muted"></i> <strong>Prom.</strong>holi</span>
+                  <span class="mr-1"><i class="fa fa-thermometer-empty text-muted"></i> <strong>Min.</strong>holis</span>
+              </div>
+            </agm-info-window>
+          </agm-marker>
+      </ng-container>
+
     <ng-container  *ngFor="let fruit of fruits | async">
-      <agm-marker [latitude]="fruit.latitude" [longitude]="fruit.longitude" [iconUrl]="fruit.iconUrl" >
+      <agm-marker [latitude]="fruit.latitude" [longitude]="fruit.longitude" *ngIf="visibleMarkers[fruit.key]"> <!--Aca esta el error necesito que lo vea numero-->
         <agm-info-window>
-          <h5>{{fruit.key}}</h5>
+          <h5>{{fruit.name}}</h5>
           <p class="text-muted">Recomendaciones de temperatura para su cultivo.</p>
           <div class="d-flex justify-content-between">
               <span class="mr-1"><i class="fa fa-thermometer-full text-muted"></i> <strong>Máx.</strong>{{fruit.max_temperature}}</span>
@@ -22,5 +36,6 @@
           </div>
         </agm-info-window>
       </agm-marker>
-    </ng-container>
+    </ng-container> 
+
   </agm-map>

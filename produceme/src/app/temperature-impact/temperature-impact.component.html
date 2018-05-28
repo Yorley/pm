@@ -11,7 +11,7 @@
   </label>
   <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
     <ng-container  *ngFor="let fruit of fruits | async">
-      <agm-marker [latitude]=fruit.latitude [longitude]=fruit.longitude [iconUrl]=fruit.iconUrl *ngIf="visibleMarkers[fruit.key]">
+      <agm-marker [latitude]="fruit.latitude" [longitude]="fruit.longitude" [iconUrl]="fruit.iconUrl" >
         <agm-info-window>
           <h5>{{fruit.key}}</h5>
           <p class="text-muted">Recomendaciones de temperatura para su cultivo.</p>

@@ -4,6 +4,7 @@ export class Fruit {
   public longitude: number;
   public min_temperature: string;
   public max_temperature: string;
+  public mean_temperature: string;
 
   
   

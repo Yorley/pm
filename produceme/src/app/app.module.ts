@@ -40,6 +40,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 
 import { AgmCoreModule } from '@agm/core';
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +68,7 @@ import { AgmCoreModule } from '@agm/core';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ChartsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase, 'produceMe'),
     AngularFireDatabaseModule,

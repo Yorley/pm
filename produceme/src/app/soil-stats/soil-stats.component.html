@@ -1,1 +1,39 @@
-<p>peroooooooo</p>
+<div class="row d-flex justify-content-center" >
+        <h1>Estadistica de suelo</h1>
+    </div>
+    <nav class="navbar navbar-dark bg-dark sticky-top">
+        <div class="form-check form-check-inline">
+            <label *ngFor="let soil of soils | async" class="mr-3">
+                <input type="checkbox" [(ngModel)]="soilFilter[soil.name]"
+                name="{{soil.name}}" class="mr-1"><span class="text-light text-capitalize">{{soil.name}}</span>
+            </label>
+        </div>
+    </nav>
+    <ng-container *ngFor="let chart of allCharts">
+        
+
+        <div class="card mb-3" *ngIf="soilFilter[chart.key]">
+            <div class="card-header text-capitalize">
+                <i class="fa fa-area-chart"></i>Tipo de suelo: {{chart.key}}</div>
+                <div>
+                    <div style="display: block">
+                        <canvas baseChart
+                            [data]="chart.chartData"
+                            [labels]="chart.labels"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)">
+                        </canvas>
+                    </div>
+                    </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            
+        </div>
+    </ng-container>
+    
+    
+    
+    
+    
+    

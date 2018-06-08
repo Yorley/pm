@@ -6,7 +6,6 @@
         </label>
     </div>
   </nav>
- 
   <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
     <ng-container *ngFor="let fruit of fruits | async">
       <agm-marker [latitude]="convertStringToNumber(fruit.latitude)" [longitude]="convertStringToNumber(fruit.longitude)" *ngIf="visibleMarkers[fruit.key]"> <!--Aca esta el error necesito que lo vea numero-->

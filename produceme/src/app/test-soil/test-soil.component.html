@@ -1,11 +1,38 @@
-<p>
-  test-soil works!
-</p>
-<!-- 
-<label for="typeahead-basic">Search for a state:</label>
-<input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search"/>
-<hr>
-<pre>Model: {{ model | json }}</pre>
+
+<div class="row d-flex justify-content-center" >
+    <h1>Estadistica de suelo</h1>
+</div>
+<nav class="navbar navbar-dark bg-dark sticky-top">
+    <div class="form-check form-check-inline">
+        <label *ngFor="let fruit of fruits | async" class="mr-3">
+            <input type="checkbox" [(ngModel)]="fruitFilter[fruit.key]"
+            name="{{fruit.key}}" class="mr-1"><span class="text-light text-capitalize">{{fruit.name}}</span>
+        </label>
+    </div>
+</nav>
+<ng-container *ngFor="let chart of allCharts">
+    <div class="card mb-3" *ngIf="fruitFilter[chart.key]">
+        <div class="card-header text-capitalize">
+            <i class="fa fa-area-chart"></i>{{chart.key}}</div>
+            <div>
+                <div style="display: block">
+                    <canvas baseChart
+                        [datasets]="chart.chartData"
+                        [labels]="chart.labels"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
+                </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        
+    </div>
+</ng-container>
 
 
--->
+
+
+

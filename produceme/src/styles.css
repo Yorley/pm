@@ -47,6 +47,10 @@
 
   /* Estilo del menu lateral*/
 
+  #sidebar{
+    padding-bottom:70%;
+    background-color: #822020;
+  }
   #sidebar .list-group-item {
     border-radius: 0;
     background-color: #822020;

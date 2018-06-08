@@ -32,16 +32,6 @@ export class TemperatureImpactComponent implements OnInit {
       )
     );
 //----------------------------------------------------------------------------------
-    const fruitRef = this.db.list<Marker>('product');
-
-    // Esto permite agregar el id de la fruta al objeto
-    this.markers = fruitRef.snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      )
-    );
-
-
   }
 
   private convertStringToNumber(value: string): number {

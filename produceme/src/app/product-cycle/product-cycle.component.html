@@ -4,21 +4,36 @@
               <div class="row d-flex justify-content-center" style="padding: 20px;" >
                     <h2 >Ciclo de vida de un producto</h2>
               </div>
-              <div id="custom-search-input" >
-                  <div class="input-group col-md-12  ">
-                      <input type="text" class="form-control input-lg" placeholder="Buscar" />
-                      <span class="input-group-btn">
-                          <button class="btn btn-info btn-lg" type="button">
-                              <i class="fa fa-search"></i>
-                          </button>
-                      </span>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-10">
+                      <select class="form-control" id="exampleSelect1"[(ngModel)]="selectedValue">
+                        <option *ngFor="let fruit of fruits | async" [ngValue]="fruit.key">{{fruit.name}}</option>
+                      </select>
                   </div>
-              </div>
+                  <div class="col-md-2">
+                      <button class="btn btn-info btn-md" type="button">
+                          <i class="fa fa-search"></i>
+                      </button>
+                  </div>
+                </div>
+                </div>
+     
           </div>
     </div>
 </div>
-  <div class="row">
+  <div class="row" >
     <div class="col-md-4" ></div>
-    <div id="adam"></div>
+    <div id="adam" *ngIf="selectedValue[fresa]===fresa"></div>
   </div>  
+<!--
 
+  <carousel (activeSlideChange)="log($event)" [interval]="false">
+    <slide *ngFor="let fruit of fruits;">
+      <img [src]="fruit.pictures" alt="image slide" style="display: block; width: 100%;">
+      <div class="carousel-caption">
+        <h4>Etapa {{index}}</h4>
+      </div>
+    </slide>
+  </carousel> 
+-->

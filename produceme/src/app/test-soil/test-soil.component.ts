@@ -40,7 +40,7 @@ export class TestSoilComponent implements OnInit {
     );
 
     this.fruits.subscribe(fruits => {
-      console.log(JSON.stringify(fruits));
+      console.log(JSON.stringify(fruits)); 
       this.allCharts= fruits.map(fruit => {
         return {
           key:fruit.name,
@@ -50,7 +50,7 @@ export class TestSoilComponent implements OnInit {
             label:"Suelo Deseado"
           },
           {
-            data:fruit.components.map(component => (component.percentage)),
+            data:fruit.components.map(component => (component.percentage-10)),
             label:"Suelo Actual"
           }
         ]

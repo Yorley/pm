@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Marker } from '../classes/marker';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Fruit } from '../classes/fruit';
+import { Fruit } from '../classes/fruit'; 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 

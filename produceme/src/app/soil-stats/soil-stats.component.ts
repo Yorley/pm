@@ -3,7 +3,6 @@ import * as CanvasJS from 'canvasjs' ;
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase } from 'angularfire2/database';
-
 import { functions } from 'firebase';
 
 

@@ -1,0 +1,28 @@
+h1 {
+    color: #610B0B;
+    font-size: x-large;
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    
+}
+.bgCont{
+
+    background-color: beige;
+    width: 99.5%;
+    padding-bottom: 15px;
+    
+    
+}
+.products{
+    background-color:   beige;
+    border: firebrick;
+    border-width: 2px;  
+    padding: 10px;
+    margin-bottom: 0px;
+}
+
+agm-map {
+    height: calc(100vh - 150px);
+}

@@ -14,12 +14,14 @@ import {CostComponent  } from "./cost/cost.component";
 import {SaleComponent  } from "./sale/sale.component";
 import {WasteComponent  } from "./waste/waste.component";
 import {WarningComponent  } from "./warning/warning.component";
+import { GeolocationComponent } from "./geolocation/geolocation.component";
 
 import { RegisterComponent } from "./register/register.component";
 import { LoginComponent } from "./login/login.component";
 import { ViewProfileComponent } from "./view-profile/view-profile.component";
 import { ChatComponent } from "./chat/chat.component";
 import { UchatComponent } from "./uchat/uchat.component";
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 
@@ -29,12 +31,12 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'soilStats', component: SoilStatsComponent },  
-  { path: 'changeSoil', component: ChangesSoilComponent },
-  { path: 'fertilizationTest', component: FertilizationTestComponent },
+  { path: 'changeSoil', component: ChangesSoilComponent },//no
+  { path: 'fertilizationTest', component: FertilizationTestComponent },//no
   { path: 'temperatureImpact', component: TemperatureImpactComponent },
-  { path: 'testSoil', component: TestSoilComponent },
-  { path: 'testVulnerability', component: TestVulnerabilityComponent },
-  { path: 'testWaste', component: TestWasteComponent },
+  { path: 'testSoil', component: TestSoilComponent },//no
+  { path: 'testVulnerability', component: TestVulnerabilityComponent },//no
+  { path: 'testWaste', component: TestWasteComponent },//no
   { path: 'cycle', component: ProductCycleComponent },
   { path: 'costs', component: CostComponent },
   { path: 'warning', component: WarningComponent },
@@ -44,7 +46,9 @@ const routes: Routes = [
   { path: 'viewProfile', component: ViewProfileComponent },
   { path: 'register', component: RegisterComponent },
   { path:'chating', component: ChatComponent},
-  { path:'chat', component: UchatComponent}
+  { path:'chat', component: UchatComponent},
+  { path:'geolocation', component: GeolocationComponent},
+  { path:'calendar', component: CalendarComponent}
   
    
   

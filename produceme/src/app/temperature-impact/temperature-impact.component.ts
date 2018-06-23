@@ -31,7 +31,7 @@ export class TemperatureImpactComponent implements OnInit {
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       )
     );
-//----------------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------------
   }
 
   private convertStringToNumber(value: string): number {

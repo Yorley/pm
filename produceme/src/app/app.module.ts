@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS}    from '@angular/common/http';
 import { AppRoutingModule }     from './app-routing.module';
 import { FormsModule }    from '@angular/forms';
+import { CalendarModule } from 'angular-calendar';
 
 import { AppComponent } from './app.component';
 import { SoilStatsComponent } from './soil-stats/soil-stats.component';
@@ -69,6 +71,7 @@ import { CalendarComponent } from './calendar/calendar.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
@@ -78,10 +81,10 @@ import { CalendarComponent } from './calendar/calendar.component';
     AngularFireDatabaseModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyARl6VyKE8_p5e1pmToZLR_xw3CLRvvBOI'
-    })
+    }),
+    CalendarModule.forRoot()
   ],
   providers: [
-    
     AuthGuard,
     AlertService,
     AuthenticationService,

@@ -5,12 +5,10 @@ import {
   isSameDay
 } from 'date-fns';
 import { AngularFireDatabase } from 'angularfire2/database';
-
-interface Event {
-  title: string;
-  start: string;
-  end: string;
-}
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { AddEventComponent } from './modals/add-event/add-event.component';
+import { map } from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-calendar',
@@ -38,23 +36,16 @@ export class CalendarComponent implements OnInit {
   };
 
   events: CalendarEvent[] = [];
-  constructor(public db: AngularFireDatabase) { }
+  constructor(public db: AngularFireDatabase, public modal: BsModalService) { }
 
   ngOnInit() {
-    const eventsRef = this.db.list<Event>('events');
-
-    /*eventsRef.push({
-      title: 'Prueba',
-      start: new Date().toISOString(),
-      end: new Date().toISOString()
-    });*/
-
+    const eventsRef = this.db.list<any>('events');
     eventsRef.valueChanges().subscribe(events => {
       this.events = events.map(event => {
         return {
           title: event.title,
-          start: new Date(Date.parse(event.start)),
-          end: new Date(Date.parse(event.end)),
+          start: moment(event.start).toDate(),
+          end: moment(event.end).toDate(),
           color: this.colors[0]
         };
       });
@@ -73,5 +64,21 @@ export class CalendarComponent implements OnInit {
         this.viewDate = date;
       }
     }
+  }
+
+  showAddEventModal() {
+    const modalRef = this.modal.show(AddEventComponent);
+
+    const eventsRef = this.db.list<any>('events');
+    modalRef.content.completedObservable = eventsRef.valueChanges().pipe(map(events => {
+      this.events = events.map(event => {
+        return {
+          title: event.title,
+          start: new Date(Date.parse(event.start)),
+          end: new Date(Date.parse(event.end)),
+          color: this.colors[0]
+        };
+      });
+    }));
   }
 }

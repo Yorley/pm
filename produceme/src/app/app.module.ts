@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS}    from '@angular/common/http';
-import { AppRoutingModule }     from './app-routing.module';
-import { FormsModule }    from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 import { CalendarModule } from 'angular-calendar';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 import { AppComponent } from './app.component';
 import { SoilStatsComponent } from './soil-stats/soil-stats.component';
@@ -20,22 +23,20 @@ import { CostComponent } from './cost/cost.component';
 import { SaleComponent } from './sale/sale.component';
 import { WasteComponent } from './waste/waste.component';
 import { WarningComponent } from './warning/warning.component';
-import { ChatComponent } from "./chat/chat.component";
-import { RegisterComponent } from "./register/register.component";
-import { LoginComponent } from "./login/login.component";
-import { ViewProfileComponent } from "./view-profile/view-profile.component";
+import { ChatComponent } from './chat/chat.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers/index';
 
-import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { JwtInterceptor } from './_helpers/index';
 import { AlertService, AuthenticationService, UserService, DssService } from './_services/index';
 import { UchatComponent } from './uchat/uchat.component';
 
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireAuth } from 'angularfire2/auth'; 
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -45,6 +46,7 @@ import { AgmCoreModule } from '@agm/core';
 import { ChartsModule } from 'ng2-charts';
 import { GeolocationComponent } from './geolocation/geolocation.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { AddEventComponent } from './calendar/modals/add-event/add-event.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +69,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     ViewProfileComponent,
     UchatComponent,
     GeolocationComponent,
-    CalendarComponent
+    CalendarComponent,
+    AddEventComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +85,10 @@ import { CalendarComponent } from './calendar/calendar.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyARl6VyKE8_p5e1pmToZLR_xw3CLRvvBOI'
     }),
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot()
   ],
   providers: [
     AuthGuard,
@@ -99,6 +105,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     fakeBackendProvider
 
   ],
+  entryComponents: [AddEventComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
